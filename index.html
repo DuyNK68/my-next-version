@@ -70,6 +70,13 @@
   .btn-primary:hover{ transform:translateY(-3px) scale(1.03) rotate(-1deg); box-shadow:0 18px 34px -8px rgba(255,61,127,0.65); }
   .btn-ghost{ background:rgba(255,255,255,0.16); color:#fff; border:2px solid rgba(255,255,255,0.6); backdrop-filter:blur(4px);}
   .btn-ghost:hover{ background:rgba(255,255,255,0.28); transform:translateY(-3px) rotate(1deg);}
+  .btn-secondary{ background:#fff; color:var(--pink); border:2px solid #fff; box-shadow:0 10px 24px -10px rgba(0,0,0,0.35); }
+  .btn-secondary:hover{ background:var(--sun); border-color:var(--sun); color:var(--ink); transform:translateY(-3px) rotate(1deg); box-shadow:0 14px 28px -8px rgba(0,0,0,0.4); }
+  .nav.scrolled .btn-secondary{ background:var(--forest); color:#fff; border-color:var(--forest); box-shadow:0 10px 22px -10px rgba(23,38,29,0.4); }
+  .nav.scrolled .btn-secondary:hover{ background:var(--pink); border-color:var(--pink); color:#fff; }
+  .nav-cta .btn-secondary{ flex-direction:column; gap:0; line-height:1.15; padding-top:8px; padding-bottom:8px; }
+  .btn-secondary .btn-main{ font-size:1em; }
+  .btn-secondary .btn-sub{ font-family:'Fredoka', sans-serif; font-weight:600; font-size:10px; letter-spacing:0.5px; text-transform:uppercase; opacity:0.75; }
 
   /* ---------- NAV ---------- */
   .nav{
@@ -87,6 +94,7 @@
   .nav.scrolled .nav-links a{ color:var(--ink-soft); }
   .nav-links a:hover{ color:var(--sun); }
   .nav.scrolled .nav-links a:hover{ color:var(--pink); }
+  .nav-cta{ display:flex; align-items:center; gap:10px; }
   .nav-cta .btn{ padding:11px 24px; font-size:14px; }
 
   /* ---------- HERO ---------- */
@@ -371,6 +379,12 @@
     .form-row{ grid-template-columns:1fr; }
   }
   @media (max-width: 560px){
+    .nav{ padding:12px 16px; }
+    .nav.scrolled{ padding:8px 16px; }
+    .nav-cta{ gap:6px; }
+    .nav-cta .btn{ padding:9px 14px; font-size:12px; }
+    .nav-cta .btn-secondary{ padding-top:6px; padding-bottom:6px; }
+    .btn-secondary .btn-sub{ font-size:8.5px; }
     section{ padding:70px 0; }
     .phase-grid, .house-grid, .info-grid{ grid-template-columns:1fr; }
     .hero{ padding-top:110px; }
@@ -397,6 +411,10 @@
     <a href="#discover">Khám phá bản thân</a>
   </div>
   <div class="nav-cta">
+    <a href="#discover" class="btn btn-secondary">
+      <span class="btn-main">Khám phá bản thân</span>
+      <span class="btn-sub">Discover Yourself</span>
+    </a>
     <a href="#register" class="btn btn-primary">Đăng ký ngay</a>
   </div>
 </nav>
@@ -746,6 +764,16 @@
           </div>
           <div class="form-row">
             <div class="field"><label>Trường đang học</label><input type="text" placeholder="Trường THCS ..." name="student_school"></div>
+            <div class="field"><label>Giới tính học sinh <span class="req">*</span></label>
+              <select name="student_gender" required>
+                <option value="" disabled selected>Chọn giới tính</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row full">
             <div class="field"><label>Tình trạng quan tâm</label>
               <select name="lead_status">
                 <option>Đang tìm hiểu</option>
@@ -802,7 +830,7 @@
      Execute as: Me | Who has access: Anyone
      Xem chi tiết trong comment đầu file google-apps-script.gs
   ================================================================ */
-  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzUQau_dJ4OKvpi9Z3xsfvYzAiBEEkLAoat1wfus_igFli1mAgVEDqET40ikKT6JHiMig/exec";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxFA0i7_6aIixAwIJttCWGPOkoxmrzDA99UDe7aQK9MaH47DFOStB2WnQ5Yqda7y0K9zQ/exec";
 
   function sendToSheet(formType, dataObj){
     if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf('YOUR_SCRIPT_URL') !== -1){
